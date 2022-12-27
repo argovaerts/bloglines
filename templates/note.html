@@ -1,0 +1,16 @@
+<article class="h-entry" id="{{ published }}">
+    <main class="e-content p-name">
+        {{ content }}
+    </main>
+    <footer>
+        <p>
+            Published on <time class="dt-published" datetime="{{ published }}">{{ published }}</time>
+            {% if published != last_updated  %}
+            and last updated on <time class="dt-updated" datetime="{{ last_updated }}">{{ last_updated }}</time>
+            {% endif %}
+        </p>
+        <p>
+            [<a href="{{ permalink }}" class="u-url u-uid">permalink</a>]
+        </p>
+    </footer>
+</article>

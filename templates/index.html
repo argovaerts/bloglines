@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="h-feed">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="p-name">Arne Govaerts</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/hack@0.8.1/dist/hack.css">
+    <link rel="stylesheet" href="https://unpkg.com/hack@0.8.1/dist/dark-grey.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="hack dark-grey container">
+    <header class="h-card">
+        <h1 class="u-author" rel="author">Arne Govaerts</h1>
+        <p>
+            Hi! I'm Arne.
+            Currently I work as system DBA at KBC Bank and Insurance
+            and I have a small business on the side (<a href="https://www.normal.eco">NORMAL.eco</a>,
+            <a href="https://www.scallopshells.com">Scallopshells.com</a>).
+            <a href="https://pronoun.is/he">He/him</a>.
+        </p>
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://apg.im" class="u-url" rel="home">apg.im</a>
+                </li>
+                <li>
+                    <a href="mailto:a@apg.im">a@apg.im</a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/argovaerts/">/in/argovaerts</a>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <ul>
+            {% for year in years %}
+            <li>
+                <a href="{{ year }}.html">{{ year }}</a>
+            </li>
+            {% endfor %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <hr>
+        {% for item in items %}
+        {{ item }}
+        <hr>
+        {% endfor %}
+    </main>
+    <footer>
+        <p>
+            <b>apg.im</b>, homepage and feed of stuff, by Arne Govaerts
+        </p>
+    </footer>
+</body>
+
+</html>

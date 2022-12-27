@@ -1,0 +1,60 @@
+* {
+    font-family:'Courier New', Courier, monospace;
+}
+
+.toc {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.hack .toc::before, .hack .toc::after {
+    content: "----------------------------------------------------------------------------------------------------";
+    position: relative;
+    top: 0;
+    left: 0;
+    line-height: 20px;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.hack .toctitle {
+    display: block;
+}
+
+@media print {
+    * {
+        background-color: #fff !important;
+        color: #222;
+    }
+
+    * {
+        font-size: 11pt !important;
+        font-family: 'Courier New', Courier, monospace !important;
+    }
+
+    @page {
+        margin: 0.5in;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        page-break-after: avoid !important;
+    }
+
+    p,
+    li,
+    blockquote,
+    figure,
+    img {
+        page-break-inside: avoid !important;
+    }
+
+    a::after {
+        content: " (" attr(href) ") " !important;
+        font-size: 90% !important;
+    }
+}
