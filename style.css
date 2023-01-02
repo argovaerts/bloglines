@@ -2,6 +2,10 @@
     font-family:'Courier New', Courier, monospace;
 }
 
+footer {
+    text-align: center;
+}
+
 .toc {
     margin: 1rem;
     padding: 1rem;
