@@ -1,4 +1,8 @@
 import fire
+from dotenv import load_dotenv
+from os import getenv
+
+load_dotenv()
 
 
 def new(type='note'):
@@ -122,6 +126,22 @@ def make():
         with open('output/style.css', 'w') as out_file:
             out_file.write(in_file.read())
 
+def upload():
+    from ftplib import FTP, FTP_TLS
+    from glob import glob
+    
+    if getenv('FTP_SECURE'):
+        session = FTP_TLS(getenv('FTP_SERVER'),getenv('FTP_USERNAME'),getenv('FTP_PASSWORD'))
+    else:
+        session = ftplib.FTP(getenv('FTP_SERVER'),getenv('FTP_USERNAME'),getenv('FTP_PASSWORD'))
+    
+    for file_name in glob('output/*.*') + glob('output/**/*.*'):
+        with open(file_name,'rb') as file:
+            file_name = file_name.removeprefix('output/')
+            print(file_name)
+            session.storbinary('STOR %s' % file_name, file)
+    
+    session.quit()
 
 if __name__ == '__main__':
     fire.Fire()
