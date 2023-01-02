@@ -1,9 +1,4 @@
 import fire
-from dotenv import load_dotenv
-from os import getenv
-
-load_dotenv()
-
 
 def new(type='note'):
     from datetime import datetime, timezone
@@ -129,6 +124,10 @@ def make():
 def upload():
     from ftplib import FTP, FTP_TLS
     from glob import glob
+    from os import getenv
+    from dotenv import load_dotenv
+    
+    load_dotenv()
     
     if getenv('FTP_SECURE'):
         session = FTP_TLS(getenv('FTP_SERVER'),getenv('FTP_USERNAME'),getenv('FTP_PASSWORD'))
