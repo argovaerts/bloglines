@@ -30,7 +30,7 @@ def new(type='note'):
         out_file.write(linesep)
 
 
-def make():
+def make(output_dir='output/'):
     from jinja2 import Environment, PackageLoader
     from glob import glob
     from yaml import safe_load_all as yaml_safe_load_all
@@ -43,9 +43,12 @@ def make():
         loader=PackageLoader('bloglines')
     )
 
-    if path.exists('output/'):
-        rmtree('output/')
-    mkdir('output/')
+    if not output_dir.endswith('/'):
+        output_dir = output_dir + '/'
+
+    if path.exists(output_dir):
+        rmtree(output_dir)
+    mkdir(output_dir)
 
     years = [int(i.replace('content/', '')) for i in glob('content/*')]
     current_year = 0
@@ -104,12 +107,12 @@ def make():
                     permalink=item_details['permalink']
                 ))
 
-        with open('output/' + str(year) + '.html', 'w') as out_file:
+        with open(output_dir + str(year) + '.html', 'w') as out_file:
             template = env.get_template('index.html')
             out_file.write(template.render(items=items, years=years))
 
     if current_year > 0:
-        with open('output/' + str(current_year) + '.html', 'r') as in_file:
+        with open(output_dir + str(current_year) + '.html', 'r') as in_file:
             with open('output/index.html', 'w') as out_file:
                 out_file.write(in_file.read())
     else:
@@ -121,22 +124,26 @@ def make():
         with open('output/style.css', 'w') as out_file:
             out_file.write(in_file.read())
 
-def upload():
+def upload(output_dir='output/'):
+    def is_true(value):
+        return value.lower() == 'true' or value == '1'
+
+
     from ftplib import FTP, FTP_TLS
     from glob import glob
     from os import getenv
     from dotenv import load_dotenv
     
     load_dotenv()
-    
-    if getenv('FTP_SECURE'):
+
+    if is_true(getenv('FTP_SECURE')):
         session = FTP_TLS(getenv('FTP_SERVER'),getenv('FTP_USERNAME'),getenv('FTP_PASSWORD'))
     else:
         session = ftplib.FTP(getenv('FTP_SERVER'),getenv('FTP_USERNAME'),getenv('FTP_PASSWORD'))
     
     for file_name in glob('output/*.*') + glob('output/**/*.*'):
         with open(file_name,'rb') as file:
-            file_name = file_name.removeprefix('output/')
+            file_name = file_name.removeprefix(output_dir)
             print(file_name)
             session.storbinary('STOR %s' % file_name, file)
     
