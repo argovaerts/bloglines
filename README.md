@@ -1,4 +1,7 @@
-# bloglines
+<center>
+    <h1>bloglines</h1>
+    <p><a href="https://codeberg.org/argovaerts/bloglines">Codeberg</a> | <a href="https://github.com/argovaerts/bloglines">Github</a> (mirror)
+</center>
 
 **Bloglines** is a simple Python based tool for making and uploading a simple website or blog.
 
