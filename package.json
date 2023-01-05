@@ -1,0 +1,19 @@
+{
+  "name": "bloglines",
+  "version": "0.0.1",
+  "description": "Bloglines is a simple Python based tool for making and uploading a simple website or blog.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://codeberg.org/argovaerts/bloglines.git"
+  },
+  "author": "Arne Govaerts",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "dependencies": {
+    "@nishanths/zoom.js": "^3.1.0",
+    "hack": "^0.8.1"
+  }
+}

@@ -1,0 +1,28 @@
+<article class="h-entry" id="{{ published }}">
+    <main>
+        <section>
+            {% for photo in photos %}
+            <img
+                src="{{ media_dir }}{{ photo['uri'] }}"
+                class="u-photo"
+                alt="{% if 'alt' in photo and photo['alt'] != '' %}{{ photo['alt'] }}{% else %}{{ content_raw }}{% endif %}"
+                data-action="zoom"
+            >
+            {% endfor %}
+        </section>
+        <section class="e-content p-name">
+            {{ content }}
+        </section>
+    </main>
+    <footer>
+        <p>
+            Published on <time class="dt-published" datetime="{{ published }}">{{ published }}</time>
+            {% if published != last_updated %}
+            and last updated on <time class="dt-updated" datetime="{{ last_updated }}">{{ last_updated }}</time>
+            {% endif %}
+        </p>
+        <p>
+            [<a href="{{ permalink }}" class="u-url u-uid">permalink</a>]
+        </p>
+    </footer>
+</article>
