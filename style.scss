@@ -1,5 +1,9 @@
+$max-img-width: 600px;
+$max-img-height: 400px;
+$font-family: 'Courier New', Courier, monospace;
+
 * {
-    font-family:'Courier New', Courier, monospace;
+    font-family: $font-family;
 }
 
 footer {
@@ -11,19 +15,25 @@ footer {
     padding: 1rem;
 }
 
-.hack .toc::before, .hack .toc::after {
-    content: "----------------------------------------------------------------------------------------------------";
-    position: relative;
-    top: 0;
-    left: 0;
-    line-height: 20px;
-    width: 100%;
-    word-wrap: break-word;
+.hack {
+
+    .toc::before,
+    .toc::after {
+        content: "----------------------------------------------------------------------------------------------------";
+        position: relative;
+        top: 0;
+        left: 0;
+        line-height: 20px;
+        width: 100%;
+        word-wrap: break-word;
+    }
+
+    .toctitle {
+        display: block;
+    }
 }
 
-.hack .toctitle {
-    display: block;
-}
+
 
 @media print {
     * {
@@ -33,7 +43,7 @@ footer {
 
     * {
         font-size: 11pt !important;
-        font-family: 'Courier New', Courier, monospace !important;
+        font-family: $font-family !important;
     }
 
     @page {
@@ -61,4 +71,9 @@ footer {
         content: " (" attr(href) ") " !important;
         font-size: 90% !important;
     }
+}
+
+img {
+    width: 100%;
+    height: auto;
 }
