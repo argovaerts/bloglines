@@ -10,6 +10,11 @@ footer {
     text-align: center;
 }
 
+img {
+    width: 100%;
+    height: auto;
+}
+
 .toc {
     margin: 1rem;
     padding: 1rem;
@@ -71,9 +76,4 @@ footer {
         content: " (" attr(href) ") " !important;
         font-size: 90% !important;
     }
-}
-
-img {
-    width: 100%;
-    height: auto;
 }
